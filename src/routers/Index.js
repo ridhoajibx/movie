@@ -6,7 +6,7 @@ import HomePage from '../pages/home/Home';
 const Index = () => {
     return (
         <Switch>
-            <Route path="/">
+            <Route exact path="/">
                 <Header>
                     <HomePage />
                 </Header>

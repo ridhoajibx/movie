@@ -1,18 +1,215 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
-.form-control {
-    min-width: 340px;
+/* Variabel */ 
+:root {
+    --primary-color: #4bb9a2;
+    --bg-main-color: #0d1224;
 }
+
+/* color */
+.primary-color {
+    color: var(--primary-color);
+}
+
+.bg-main-color {
+    background-color: var(--bg-main-color);
+}
+
+.title {
+    font-size: 1.3rem;
+}
+
+/* Pagination customize */
+.page-item .page-link {
+    border: none;
+    color: var(--bg-main-color);
+}
+
+.page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+@media (min-width: 1024px) {
+    .page-item:not(:first-child) .page-link {
+        margin-left: 60px;
+    }
+}
+
+/* Customize search input */
+
+@media(min-width: 1024px) {
+    .search-input {
+        min-width: 340px;
+    }
+}
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+
+.carousel {
+    margin-bottom: 1rem;
+}
+
+/* Since positioning the image, we need to help out the caption */
+
+.carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+
+.carousel-item {
+    height: 32rem;
+}
+
+.carousel-item>img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 32rem;
+}
+
+/* MARKETING CONTENT
+  -------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+
+.marketing .col-lg-4 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.marketing h2 {
+    font-weight: 400;
+}
+
+.marketing .col-lg-4 p {
+    margin-right: .75rem;
+    margin-left: .75rem;
+}
+
+/* Featurettes
+  ------------------------- */
+
+.featurette-divider {
+    margin: 5rem 0;
+    /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+
+.featurette-heading {
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -.05rem;
+}
+
+/* RESPONSIVE CSS
+  -------------------------------------------------- */
+
+@media (min-width: 40em) {
+    /* Bump up size of carousel content */
+    .carousel-caption p {
+        margin-bottom: 1.25rem;
+        font-size: 1.25rem;
+        line-height: 1.4;
+    }
+    .featurette-heading {
+        font-size: 50px;
+    }
+}
+
+@media (min-width: 62em) {
+    .featurette-heading {
+        margin-top: 7rem;
+    }
+}
+
+/* Nav pill customize */
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: var(--primary-color);
+}
+
+.nav-pills .nav-link {
+    border-radius: 3.25rem;
+}
+
+.nav-link {
+    padding: 0.2rem 1rem;
+    color: #a6a6a4;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+}
+
+/* Footer customize */
+.footer-brand {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.footer-brand:hover {
+    color: var(--primary-color);
+}
+
+.footer-title {
+    font-size: 1.2em;
+    color: #fff;
+}
+
+.footer-text {
+    color: #fff;
+    font-weight: 400;
+    font-size: 0.9em;
+    text-align: justify;
+}
+
+.footer-img {
+    padding: 10px 0
+}
+
+.footer-img .image-dw-1{
+    width: 130px;
+}
+.footer-img .image-dw{
+    width: 100px;
+    margin-left: 8px;
+}
+.footer-img .image-social{
+    width: 50px;
+}
+
+.footer-list {
+    margin-top: 5px;
+    list-style: none;
+    padding: 0;
+    font-size: 1.2em;
+}
+
+.footer-list a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-list a:hover {
+    color: var(--primary-color);
+} 
