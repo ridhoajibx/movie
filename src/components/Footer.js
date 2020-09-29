@@ -39,10 +39,10 @@ const Footer = () => {
                             <div className="footer-title">Download</div>
                             <div className="footer-img">
                                 <Link to="#">
-                                    <img className="image-dw" src={apple} alt="" />
+                                    <img className="apple-img" src={apple} alt="" />
                                 </Link>
                                 <Link to="#">
-                                    <img className="image-dw-1" src={gplay} alt="" />
+                                    <img className="google-img" src={gplay} alt="" />
                                 </Link>
                             </div>
                         </div>
@@ -57,7 +57,7 @@ const Footer = () => {
                                     <img className="image-social" src={ instagram } alt="" />
                                 </Link>
                                 <Link to="#">
-                                    <img className="image-social p-1" src={ pinterest } alt="" />
+                                    <img className="image-social p-2" src={ pinterest } alt="" />
                                 </Link>
                             </div>
                         </div>
