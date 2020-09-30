@@ -5,13 +5,13 @@ const NavPills = () => {
         <div className="mt-4">
             <ul className="nav nav-pills">
                 <li className="nav-item">
-                    <a className="nav-link" aria-current="page" href="#">All</a>
+                    <a className="nav-link" href="#">All</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link active" href="#">Anime</a>
+                    <a className="nav-link" href="#">Anime</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#">Action</a>
+                    <a className="nav-link active" href="#">Action</a>
                 </li>
                 <li className="nav-item">
                     <a className="nav-link" href="#">Adventure</a>
