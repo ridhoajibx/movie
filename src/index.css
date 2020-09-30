@@ -207,4 +207,8 @@ code {
 
 .footer-list a:hover {
     color: var(--primary-color);
-} 
+}
+
+.footer .copyright {
+    border-top: solid #fff;
+}

@@ -9,8 +9,8 @@ import pinterest from '../assets/pinterest.png';
 
 const Footer = () => {
     return (
-        <footer className="bg-main-color py-5">
-            <div className="container">
+        <footer className="bg-main-color footer">
+            <div className="container py-4">
                 <div className="row">
                     <div className="col-md-6 col-12">
                         <Link className="footer-brand" to="/">All-Star Movie</Link>
@@ -51,16 +51,23 @@ const Footer = () => {
                             <div className="footer-title">Social Media</div>
                             <div className="footer-img">
                                 <Link to="#">
-                                    <img className="image-social" src={ facebook } alt="" />
+                                    <img className="image-social" src={facebook} alt="" />
                                 </Link>
                                 <Link to="#">
-                                    <img className="image-social" src={ instagram } alt="" />
+                                    <img className="image-social" src={instagram} alt="" />
                                 </Link>
                                 <Link to="#">
-                                    <img className="image-social p-2" src={ pinterest } alt="" />
+                                    <img className="image-social p-2" src={pinterest} alt="" />
                                 </Link>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div className="container copyright">
+                <div className="d-flex justify-content-center align-items-center">
+                    <div className="text-light py-4">
+                        Copyright &copy; 2000 - 2020 All-Star Movie. All Rights Reserved
                     </div>
                 </div>
             </div>
