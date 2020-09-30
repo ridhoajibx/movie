@@ -1,20 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Footer.css';
 
-import apple from '../assets/aplstore.png';
-import gplay from '../assets/gplay.png';
-import facebook from '../assets/facebook.png';
-import instagram from '../assets/ig.png';
-import pinterest from '../assets/pinterest.png';
+import apple from '../../assets/aplstore.png';
+import gplay from '../../assets/gplay.png';
+import facebook from '../../assets/facebook.png';
+import instagram from '../../assets/ig.png';
+import pinterest from '../../assets/pinterest.png';
 
 const Footer = () => {
     return (
-        <footer className="bg-main-color footer">
+        <footer className="bgMainColor footer">
             <div className="container py-4">
                 <div className="row">
                     <div className="col-md-6 col-12">
-                        <Link className="footer-brand" to="/">All-Star Movie</Link>
-                        <div className="my-2 footer-text">
+                        <Link className="footerBrand" to="/">All-Star Movie</Link>
+                        <div className="footerText">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Neque consequuntur vero id dolor. Magnam ducimus fuga cumque
                             asperiores sed quaerat ipsum, minima suscipit molestiae sunt
@@ -25,7 +26,7 @@ const Footer = () => {
                     </div>
 
                     <div className="col-md-3 col-12">
-                        <ul className="ml-0 ml-md-4 footer-list">
+                        <ul className="footerList">
                             <li><a href="#">Tentang Kami</a></li>
                             <li><a href="#">Blog</a></li>
                             <li><a href="#">Layanan</a></li>
@@ -35,31 +36,27 @@ const Footer = () => {
                     </div>
 
                     <div className="col-md-3 col-12">
-                        <div className="footer">
-                            <div className="footer-title">Download</div>
-                            <div className="footer-img">
-                                <Link to="#">
-                                    <img className="apple-img" src={apple} alt="" />
-                                </Link>
-                                <Link to="#">
-                                    <img className="google-img" src={gplay} alt="" />
-                                </Link>
-                            </div>
+                        <div className="footerTitle">Download</div>
+                        <div className="footerImg">
+                            <Link to="#">
+                                <img className="appleImg" src={apple} alt="" />
+                            </Link>
+                            <Link to="#">
+                                <img className="googleImg" src={gplay} alt="" />
+                            </Link>
                         </div>
 
-                        <div className="footer">
-                            <div className="footer-title">Social Media</div>
-                            <div className="footer-img">
-                                <Link to="#">
-                                    <img className="image-social" src={facebook} alt="" />
-                                </Link>
-                                <Link to="#">
-                                    <img className="image-social" src={instagram} alt="" />
-                                </Link>
-                                <Link to="#">
-                                    <img className="image-social p-2" src={pinterest} alt="" />
-                                </Link>
-                            </div>
+                        <div className="footerTitle">Social Media</div>
+                        <div className="footerImg">
+                            <Link to="#">
+                                <img className="imageSocial" src={facebook} alt="" />
+                            </Link>
+                            <Link to="#">
+                                <img className="imageSocial" src={instagram} alt="" />
+                            </Link>
+                            <Link to="#">
+                                <img className="imageSocial pinterest" src={pinterest} alt="" />
+                            </Link>
                         </div>
                     </div>
                 </div>

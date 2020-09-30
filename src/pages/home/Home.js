@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../../components/Card';
 import Carousel from '../../components/Carousel';
-import Footer from '../../components/Footer';
+import Footer from '../../components/footer/Footer';
 import NavPills from '../../components/NavPills';
 import Pagination from '../../components/Pagination';
 
