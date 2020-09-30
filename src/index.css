@@ -47,13 +47,6 @@ code {
     }
 }
 
-/* Customize search input */
-
-@media(min-width: 1024px) {
-    .search-input {
-        min-width: 340px;
-    }
-}
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */

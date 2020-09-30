@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/logo.png'
+import FormSignup from '../../pages/auth/registration/FormSignup';
 import './Header.css'
-import Swal from 'sweetalert2'
 
 const Header = ({ children }) => {
     return (
@@ -21,17 +21,19 @@ const Header = ({ children }) => {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarCollapse">
                             <form className="mt-2 mt-md-0 mx-auto">
-                                <input className="form-control search-input mr-2" type="search" placeholder="Search" aria-label="Search" />
+                                <input className="form-control searchInput" type="search" placeholder="Search movies" aria-label="Search" />
                             </form>
-                            <ul className="navbar-nav">
+                            <ul className="navbar-nav ml-auto">
                                 <li className="nav-item active">
-                                    <Link className="nav-link font-weight-bolder" aria-current="page" to="/">Sign in</Link>
+                                    <button className="nav-link btn btn-link font-weight-bolder" data-toggle="modal" data-target="#signup" to="/register">Sign in</button>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </nav>
             </header>
+
+            <FormSignup />
 
             <main>
                 {children}
