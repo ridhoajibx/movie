@@ -2,7 +2,7 @@ import React from 'react';
 
 const Pagination = () => {
     return (
-        <div>
+        <div className="mb-4">
             <nav aria-label="Page navigation">
                 <ul className="pagination">
                     <li className="page-item disabled">

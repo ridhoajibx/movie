@@ -1,0 +1,13 @@
+
+.brandImage {
+    width: 20%;
+}
+
+.brandText {
+    font-family: 'Fredoka One', cursive;
+}
+
+.brandText:hover {
+    color: var(--primary-color);
+    text-shadow: 1px 1px 1px #fff;
+}

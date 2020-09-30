@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
+import Logo from '../../assets/logo.png'
 
 import apple from '../../assets/aplstore.png';
 import gplay from '../../assets/gplay.png';
@@ -14,7 +15,12 @@ const Footer = () => {
             <div className="container py-4">
                 <div className="row">
                     <div className="col-md-6 col-12">
-                        <Link className="footerBrand" to="/">All-Star Movie</Link>
+                        <Link className="footerBrand d-flex align-items-center" to="/">
+                            <img src={Logo} alt="" className="brandImage" />
+                            <div className="brandText">
+                                ALL-STAR MOVIE
+                            </div>
+                        </Link>
                         <div className="footerText">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Neque consequuntur vero id dolor. Magnam ducimus fuga cumque
@@ -52,10 +58,10 @@ const Footer = () => {
                                 <img className="imageSocial" src={facebook} alt="" />
                             </Link>
                             <Link to="#">
-                                <img className="imageSocial" src={instagram} alt="" />
+                                <img className="imageSocial pinterest" src={pinterest} alt="" />
                             </Link>
                             <Link to="#">
-                                <img className="imageSocial pinterest" src={pinterest} alt="" />
+                                <img className="imageSocial" src={instagram} alt="" />
                             </Link>
                         </div>
                     </div>

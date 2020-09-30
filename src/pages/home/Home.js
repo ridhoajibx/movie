@@ -1,9 +1,9 @@
 import React from 'react';
-import Card from '../../components/Card';
-import Carousel from '../../components/Carousel';
+import Card from '../../components/cards/Card';
+import Carousel from '../../components/carousel/Carousel';
 import Footer from '../../components/footer/Footer';
-import NavPills from '../../components/NavPills';
-import Pagination from '../../components/Pagination';
+import NavPills from '../../components/navpills/NavPills';
+import Pagination from '../../components/pagination/Pagination';
 
 const Home = () => {
     return (
@@ -22,75 +22,83 @@ const Home = () => {
                 <div className="container">
                     <div className="row">
                         <Card content={{
-                            imageUrl: "http://placekitten.com/g/300/200",
-                            title: "John Wick",
+                            imageUrl: "http://cima4u.tv/wp-content/uploads/1-71.jpg",
+                            title: "Vikings",
                             category: "Action",
+                            text: "Now You can watch the first epsoide of the action series Vikings , wish you interesting watch",
+                            date: "2020"
                         }} />
 
                         <Card content={{
-                            imageUrl: "http://placekitten.com/g/300/200",
-                            title: "John Wick",
+                            imageUrl: "http://cima4u.tv/wp-content/uploads/1-71.jpg",
+                            title: "Vikings",
                             category: "Action",
+                            text: "Now You can watch the first epsoide of the action series Vikings , wish you interesting watch",
+                            date: "2020"
                         }} />
 
                         <Card content={{
-                            imageUrl: "http://placekitten.com/g/300/200",
-                            title: "John Wick",
+                            imageUrl: "http://cima4u.tv/wp-content/uploads/1-71.jpg",
+                            title: "Vikings",
                             category: "Action",
+                            text: "Now You can watch the first epsoide of the action series Vikings , wish you interesting watch",
+                            date: "2020"
                         }} />
 
                         <Card content={{
-                            imageUrl: "http://placekitten.com/g/300/200",
-                            title: "John Wick",
+                            imageUrl: "http://cima4u.tv/wp-content/uploads/1-71.jpg",
+                            title: "Vikings",
                             category: "Action",
+                            text: "Now You can watch the first epsoide of the action series Vikings , wish you interesting watch",
+                            date: "2020"
                         }} />
 
                         <Card content={{
-                            imageUrl: "http://placekitten.com/g/300/200",
-                            title: "John Wick",
+                            imageUrl: "http://cima4u.tv/wp-content/uploads/1-71.jpg",
+                            title: "Vikings",
                             category: "Action",
+                            text: "Now You can watch the first epsoide of the action series Vikings , wish you interesting watch",
+                            date: "2020"
                         }} />
 
                         <Card content={{
-                            imageUrl: "http://placekitten.com/g/300/200",
-                            title: "John Wick",
+                            imageUrl: "http://cima4u.tv/wp-content/uploads/1-71.jpg",
+                            title: "Vikings",
                             category: "Action",
+                            text: "Now You can watch the first epsoide of the action series Vikings , wish you interesting watch",
+                            date: "2020"
                         }} />
 
                         <Card content={{
-                            imageUrl: "http://placekitten.com/g/300/200",
-                            title: "John Wick",
+                            imageUrl: "http://cima4u.tv/wp-content/uploads/1-71.jpg",
+                            title: "Vikings",
                             category: "Action",
+                            text: "Now You can watch the first epsoide of the action series Vikings , wish you interesting watch",
+                            date: "2020"
                         }} />
 
                         <Card content={{
-                            imageUrl: "http://placekitten.com/g/300/200",
-                            title: "John Wick",
+                            imageUrl: "http://cima4u.tv/wp-content/uploads/1-71.jpg",
+                            title: "Vikings",
                             category: "Action",
+                            text: "Now You can watch the first epsoide of the action series Vikings , wish you interesting watch",
+                            date: "2020"
                         }} />
 
                         <Card content={{
-                            imageUrl: "http://placekitten.com/g/300/200",
-                            title: "John Wick",
+                            imageUrl: "http://cima4u.tv/wp-content/uploads/1-71.jpg",
+                            title: "Vikings",
                             category: "Action",
+                            text: "Now You can watch the first epsoide of the action series Vikings , wish you interesting watch",
+                            date: "2020"
                         }} />
 
                         <Card content={{
-                            imageUrl: "http://placekitten.com/g/300/200",
-                            title: "John Wick",
+                            imageUrl: "http://cima4u.tv/wp-content/uploads/1-71.jpg",
+                            title: "Vikings",
                             category: "Action",
-                        }} />
-
-                        <Card content={{
-                            imageUrl: "http://placekitten.com/g/300/200",
-                            title: "John Wick",
-                            category: "Action",
-                        }} />
-
-                        <Card content={{
-                            imageUrl: "http://placekitten.com/g/300/200",
-                            title: "John Wick",
-                            category: "Action",
+                            text: "Now You can watch the first epsoide of the action series Vikings , wish you interesting watch",
+                            date: "2020"
                         }} />
                     </div>
                     <div className="row">

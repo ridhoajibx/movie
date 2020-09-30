@@ -2,7 +2,7 @@ import React from 'react';
 
 const NavPills = () => {
     return (
-        <div>
+        <div className="mt-4">
             <ul className="nav nav-pills">
                 <li className="nav-item">
                     <a className="nav-link" aria-current="page" href="#">All</a>
