@@ -54,10 +54,24 @@ a {
     transition: all 0.5s ease;
 }
 
+.cardMovie .rating {
+    position: absolute;
+    left: 2px;
+    top: 10px;
+    padding: 3px 10px;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    transform: translate(-160px, 0);
+    transition: all 0.5s ease;
+}
+
 .cardMovie .catagory {
     position: absolute;
     left: 10px;
-    top: 10px;
+    top: 40px;
     padding: 3px 10px;
     font-size: 15px;
     font-weight: 700;
@@ -66,13 +80,13 @@ a {
     color: #fff;
     border-radius: 5px;
     transform: translate(-160px, 0);
-    transition: all 0.5s ease;
+    transition: all 0.5s ease 0.15s;
 }
 
 .cardMovie .views {
     position: absolute;
     left: 10px;
-    top: 40px;
+    top: 70px;
     padding: 3px 10px;
     font-size: 15px;
     font-weight: 700;
@@ -81,7 +95,7 @@ a {
     color: #fff;
     border-radius: 5px;
     transform: translate(-160px, 0);
-    transition: all 0.5s ease 0.15s;
+    transition: all 0.5s ease 0.30s;
 }
 
 .cardMovie:hover .img1 {
@@ -95,6 +109,6 @@ a {
     transform: rotate(0deg);
 }
 
-.cardMovie:hover .views, .cardMovie:hover .catagory {
+.cardMovie:hover .views, .cardMovie:hover .catagory, .cardMovie:hover .rating {
     transform: translate(0);
 }
