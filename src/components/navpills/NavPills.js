@@ -1,23 +1,10 @@
 import React from 'react';
 
-const NavPills = () => {
+const NavPills = (props) => {
     return (
-        <div className="mt-4">
-            <ul className="nav nav-pills">
-                <li className="nav-item">
-                    <a className="nav-link" href="#">All</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">Anime</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link active" href="#">Action</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">Adventure</a>
-                </li>
-            </ul>
-        </div>
+        <li className="nav-item">
+            <a className="nav-link font-weight-bold" href="#">{ props.genreName }</a>
+        </li>
     );
 }
 

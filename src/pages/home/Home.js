@@ -3,8 +3,8 @@ import React from 'react';
 import Carousel from '../../components/carousel/Carousel';
 import MovieIndex from '../movies/Index';
 import Footer from '../../components/footer/Footer';
-import NavPills from '../../components/navpills/NavPills';
 import Pagination from '../../components/pagination/Pagination';
+import TagCategory from '../movies/TagCategory';
 
 const Home = () => {
     
@@ -15,7 +15,7 @@ const Home = () => {
                 <div className="container">
                     <div className="row">
                         <h4 className="title font-weight-bold text-muted">Browse by category</h4>
-                        <NavPills />
+                        <TagCategory />
                     </div>
                 </div>
             </section>
