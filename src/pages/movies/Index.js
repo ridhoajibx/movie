@@ -5,10 +5,10 @@ import Card from '../../components/cards/Card';
 
 const Index = () => {
     const [movies, setMovies] = useState([])
-
+    
     const getMovies = async () => {
         try {
-            let response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=605dcb7e5df74d03840b53d880bd4319&page=1`)
+            let response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_APIKEY}&page=1`)
             setMovies(response.data.results)
         } catch (e) {
             console.log(e.message);

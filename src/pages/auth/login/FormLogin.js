@@ -1,22 +1,17 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
 
-export default function FormSignup() {
+const FormLogin = () => {
     return (
         <div>
-            <div className="modal fade" id="signup" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="login" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Sign Up</h5>
+                            <h5 className="modal-title" id="exampleModalLabel">Login</h5>
                             <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form>
                             <div className="modal-body">
-                                <div className="mb-3">
-                                    <label htmlFor="name" className="form-label">Full Name</label>
-                                    <input type="text" className="form-control" id="name" />
-                                </div>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">Email address</label>
                                     <input type="email" className="form-control" id="email" aria-describedby="emailHelp" />
@@ -26,16 +21,17 @@ export default function FormSignup() {
                                     <label htmlFor="password" className="form-label">Password</label>
                                     <input type="password" className="form-control" id="password" />
                                 </div>
-                                <button type="button" className="btn btn-primary btn-block">Sign up</button>
+                                <button type="button" className="btn btn-primary btn-block">Login</button>
                             </div>
-                            <div className="modal-footer justify-content-center">
-                                Already have account ?
-                                <button type="button" className="btn btn-link text-decoration-none" data-toggle="modal" data-target="#signup">Login</button>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    )
+    );
 }
+
+export default FormLogin;
