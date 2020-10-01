@@ -30,6 +30,18 @@ code {
     font-size: 1.3rem;
 }
 
+/* Navbar-brand */
+
+.navbar-brand {
+    margin-right: -10rem;
+}
+
+@media(min-width:1024px){
+    .navbar-brand {
+        margin-right: 1rem;
+    }
+}
+
 /* Pagination customize */
 .page-item .page-link {
     border: none;
