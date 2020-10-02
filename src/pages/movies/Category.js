@@ -23,13 +23,13 @@ const Category = (props) => {
                         <h4 className="title font-weight-bold text-muted">Browse by category</h4>
                         <ul className="nav nav-pills">
                             <li className="nav-item">
-                                <div className={`nav-link tag-category font-weight-bold mb-1 ${props.active === 'all' ? 'active' : ''}`} onClick={props.getMovies} >All</div>
+                                <div className={`nav-link tag-category font-weight-bold mb-1 ${props.category === 'all' ? 'active' : ''}`} onClick={() => props.setCategory('all')} >All</div>
                             </li>
                             {
                                 genres.map((genre, index) => {
                                     return (
                                         <li key={ index } className="nav-item">
-                                            <div className={`nav-link tag-category font-weight-bold mb-1 ${props.active === genre.id ? 'active' : ''}`} onClick={() => props.getCategory(genre.id)} >{genre.name}</div>
+                                            <div className={`nav-link tag-category font-weight-bold mb-1 ${props.category === genre.id ? 'active' : ''}`} onClick={() => props.setCategory(genre.id)} >{genre.name}</div>
                                         </li>
                                     )
                                 })

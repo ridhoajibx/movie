@@ -7,33 +7,38 @@ import Category from './Category';
 
 const Index = () => {
     const [movies, setMovies] = useState([])
-    const [moviesCategory, setMoviesCategory] = useState([])
     const [pages, setPages] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [active, setActive] = useState('')
+    const [category, setCategory] = useState('all')
 
     const getMovies = async () => {
         try {
-            let response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_APIKEY}&page=${pages}`)
+            let page = pages
+            if (pages === 0) {
+                setPages(1)
+                page(1)
+            }
+            let url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_APIKEY}&page=${page}`
+            if (category !== 'all') {
+                url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_APIKEY}&with_genres=${category}&page=${page}`
+            }
+            let response = await axios.get(url)
             setMovies(response.data.results)
             setTotalPages(response.data.total_pages)
-            setActive('all')
+            console.log(movies);
         } catch (e) {
             console.log(e.message);
         }
     }
 
-    const getMoviesCategory = async (genreId) => {
-        try {
-            let response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_APIKEY}&with_genres=${genreId}&page=${pages}`)
-            setMoviesCategory(response.data.results)
-            setMovies(response.data.results)
-            setTotalPages(response.data.total_pages)
-            setActive(genreId)
-        } catch (e) {
-            console.log(e.message);
-        }
-    }
+    useEffect(() => {
+        getMovies()
+    }, []);
+
+    useEffect(() => {
+        setPages(1)
+        getMovies()
+    }, [category]);
 
     useEffect(() => {
         getMovies()
@@ -59,14 +64,14 @@ const Index = () => {
     return (
         <>
             <Category
-                getCategory={getMoviesCategory}
-                getMovies={getMovies}
-                active={active}
+                getMovies={ getMovies }
+                category={ category }
+                setCategory={ setCategory }
             />
             <section>
                 <div className="container">
                     <div className="row">
-                        { movies &&
+                        { movies.length > 0 &&
                             movies.map((movie, index) => {
                                 return (
                                     <Card
