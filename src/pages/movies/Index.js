@@ -7,29 +7,24 @@ import Category from './Category';
 
 const Index = () => {
     const [movies, setMovies] = useState([])
-    const [moviesCategory, setMoviesCategory] = useState([])
     const [pages, setPages] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [active, setActive] = useState('')
+    const [active, setActive] = useState('all')
 
     const getMovies = async () => {
         try {
-            let response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_APIKEY}&page=${pages}`)
+            let page = pages
+            if(pages == 0){
+                setPages(1)
+                page = 1
+            }
+            let url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_APIKEY}&page=${page}`
+            if(active !== 'all'){
+                url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_APIKEY}&with_genres=${active}&page=${page}`
+            }
+            let response = await axios.get(url)
             setMovies(response.data.results)
             setTotalPages(response.data.total_pages)
-            setActive('all')
-        } catch (e) {
-            console.log(e.message);
-        }
-    }
-
-    const getMoviesCategory = async (genreId) => {
-        try {
-            let response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_APIKEY}&with_genres=${genreId}&page=${pages}`)
-            setMoviesCategory(response.data.results)
-            setMovies(response.data.results)
-            setTotalPages(response.data.total_pages)
-            setActive(genreId)
         } catch (e) {
             console.log(e.message);
         }
@@ -37,7 +32,17 @@ const Index = () => {
 
     useEffect(() => {
         getMovies()
+    }, []);
+
+    useEffect(() => {
+        setPages(1)
+        getMovies()
+    }, [active]);
+
+    useEffect(() => {
+        getMovies()
     }, [pages]);
+
 
     const nextPage = (e) => {
         e.preventDefault()
@@ -59,9 +64,8 @@ const Index = () => {
     return (
         <>
             <Category
-                getCategory={getMoviesCategory}
-                getMovies={getMovies}
                 active={active}
+                setActive={setActive}
             />
             <section>
                 <div className="container">

@@ -29,7 +29,7 @@ const Category = (props) => {
                                 genres.map((genre, index) => {
                                     return (
                                         <li key={ index } className="nav-item">
-                                            <div className={`nav-link tag-category font-weight-bold mb-1 ${props.active === genre.id ? 'active' : ''}`} onClick={() => props.getCategory(genre.id)} >{genre.name}</div>
+                                            <div className={`nav-link tag-category font-weight-bold mb-1 ${props.active === genre.id ? 'active' : ''}`} onClick={() => props.setActive(genre.id)} >{genre.name}</div>
                                         </li>
                                     )
                                 })
