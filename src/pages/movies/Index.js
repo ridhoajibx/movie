@@ -25,7 +25,7 @@ const Index = () => {
             let response = await axios.get(url)
             setMovies(response.data.results)
             setTotalPages(response.data.total_pages)
-            console.log(movies);
+            // console.log(movies);
         } catch (e) {
             console.log(e.message);
         }
