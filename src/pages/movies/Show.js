@@ -1,11 +1,11 @@
 import React from 'react';
 
-const MovieCategory = () => {
+const Show = () => {
     return (
         <div>
-            
+            this is show by id movie
         </div>
     );
 }
 
-export default MovieCategory;
+export default Show;
