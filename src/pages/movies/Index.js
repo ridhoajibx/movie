@@ -4,14 +4,17 @@ import axios from 'axios'
 import Card from '../../components/cards/Card';
 import Pagination from '../../components/pagination/Pagination';
 import Category from './Category';
+import LoadingPulse from '../../assets/loading.svg'
 
 const Index = () => {
-    const [movies, setMovies] = useState([])
-    const [pages, setPages] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
-    const [category, setCategory] = useState('all')
+    const [movies, setMovies] = useState([]),
+            [pages, setPages] = useState(1),
+            [totalPages, setTotalPages] = useState(1),
+            [category, setCategory] = useState('all'),
+            [loading, setLoading] = useState(false);
 
     const getMovies = async () => {
+        setLoading(true)
         try {
             let page = pages
             if (pages === 0) {
@@ -25,9 +28,10 @@ const Index = () => {
             let response = await axios.get(url)
             setMovies(response.data.results)
             setTotalPages(response.data.total_pages)
-            // console.log(movies);
+            setLoading(false)
         } catch (e) {
             console.log(e.message);
+            setLoading(true)
         }
     }
 
@@ -71,13 +75,14 @@ const Index = () => {
             <section>
                 <div className="container">
                     <div className="row">
-                        { movies.length > 0 &&
+                        { !loading && movies.length > 0 &&
                             movies.map((movie, index) => {
                                 return (
                                     <Card
                                         key={index}
                                         movieId={movie.id}
-                                        imageUrl={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                                        imageUrl={!movie.poster_path ? `https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg` :
+                                                                        `https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                                         title={movie.title}
                                         text={movie.overview}
                                         rating={movie.vote_average}
@@ -87,7 +92,12 @@ const Index = () => {
                                 )
                             })
 
-                        }                        
+                        }
+                        {loading &&
+                            <div className="text-center">
+                                <img src={ LoadingPulse } style={{ width:'5%' }} alt="Loading..."/>
+                            </div>
+                        }                      
                         <Pagination
                             nextPage={nextPage}
                             prevPage={prevPage}
