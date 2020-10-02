@@ -125,6 +125,11 @@ code {
     color: #a6a6a4;
 }
 
-.nav-link:hover {
-    color: var(--primary-color);
+.nav-pills .nav-link:hover {
+    color: #fff;
+    background-color: var(--primary-color);
+}
+
+.tag-category:hover {
+    cursor: pointer;
 }
