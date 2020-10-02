@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import Card from '../../components/cards/Card';
 import Pagination from '../../components/pagination/Pagination';
-import Category from './Category';
+import Category from '../../components/category/Category';
 import LoadingPulse from '../../assets/loading.svg'
 
 const Index = () => {
