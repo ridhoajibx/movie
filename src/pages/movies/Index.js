@@ -8,10 +8,10 @@ import LoadingPulse from '../../assets/loading.svg'
 
 const Index = () => {
     const [movies, setMovies] = useState([]),
-            [pages, setPages] = useState(1),
-            [totalPages, setTotalPages] = useState(1),
-            [category, setCategory] = useState('all'),
-            [loading, setLoading] = useState(false);
+        [pages, setPages] = useState(1),
+        [totalPages, setTotalPages] = useState(1),
+        [category, setCategory] = useState('all'),
+        [loading, setLoading] = useState(false);
 
     const getMovies = async () => {
         setLoading(true)
@@ -68,26 +68,26 @@ const Index = () => {
     return (
         <>
             <Category
-                getMovies={ getMovies }
-                category={ category }
-                setCategory={ setCategory }
+                getMovies={getMovies}
+                category={category}
+                setCategory={setCategory}
             />
             <section>
                 <div className="container">
                     <div className="row">
-                        { !loading && movies.length > 0 &&
+                        {!loading && movies.length > 0 &&
                             movies.map((movie, index) => {
                                 return (
                                     <Card
                                         key={index}
                                         movieId={movie.id}
                                         imageUrl={!movie.poster_path ? `https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg` :
-                                                                        `https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                                            `https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                                         title={movie.title}
-                                        text={movie.overview}
+                                        text={!movie.overview ? 'none' : movie.overview}
                                         rating={movie.vote_average}
                                         lang={movie.original_language}
-                                        date={movie.release_date.slice(0, 4)}
+                                        date={!movie.release_date ? 'none' : movie.release_date.slice(0, 4)}
                                     />
                                 )
                             })
@@ -95,9 +95,9 @@ const Index = () => {
                         }
                         {loading &&
                             <div className="text-center">
-                                <img src={ LoadingPulse } style={{ width:'5%' }} alt="Loading..."/>
+                                <img src={LoadingPulse} style={{ width: '5%' }} alt="Loading..." />
                             </div>
-                        }                      
+                        }
                         <Pagination
                             nextPage={nextPage}
                             prevPage={prevPage}

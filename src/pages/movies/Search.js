@@ -20,7 +20,12 @@ const Search = (props) => {
         const getMovies = async () => {
             setLoading(true)
             try {
-                let url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_APIKEY}&language=en-US&query=${searchMovies}&page=${pages}`
+                let page = pages
+                if (pages === 0) {
+                    setPages(1)
+                    page(1)
+                }
+                let url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_APIKEY}&language=en-US&query=${searchMovies}&page=${page}`
                 let response = await axios.get(url)
                 setMovies(response.data.results)
                 setTotalPages(response.data.total_pages)
@@ -85,10 +90,10 @@ const Search = (props) => {
                                         imageUrl={!movie.poster_path ? `https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg` :
                                             `https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                                         title={movie.title}
-                                        text={movie.overview}
+                                        text={!movie.overview ? 'none' : movie.overview}
                                         rating={movie.vote_average}
                                         lang={movie.original_language}
-                                        date={movie.release_date.slice(0, 4)}
+                                        date={!movie.release_date ? 'none' : movie.release_date.slice(0, 4)}
                                     />
                                 )
                             })
