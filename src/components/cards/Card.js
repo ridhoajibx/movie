@@ -13,7 +13,7 @@ const Card = (props) => {
     }
     return (
             <div className="cardMovie">
-            <Link to="">
+            <div onClick={()=>{console.log(props.movieId)}} >
                 <div className="img1" style={{ backgroundImage: `url(${props.imageUrl})` }}></div>
                 <div className="title">{props.title}</div>
                 <div className="text"> { props.text } </div>
@@ -22,7 +22,7 @@ const Card = (props) => {
                 <div className="rating d-flex align-items-center">
                     <span className="mr-2">{ props.rating }</span> <ReactStars {...rating}/>
                 </div>
-            </Link>
+            </div>
         </div>
     );
 }

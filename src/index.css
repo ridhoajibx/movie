@@ -14,6 +14,8 @@ code {
 /* Variabel */ 
 :root {
     --primary-color: #4bb9a2;
+    --light-primary-color: #7cc7b7;
+    --dark-primary-color: #19b190;
     --bg-main-color: #0d1224;
 }
 
@@ -24,6 +26,17 @@ code {
 
 .bg-main-color {
     background-color: var(--bg-main-color);
+}
+
+.btn-main {
+    padding: 8px 14px;
+    color: #fff;
+    background: var(--primary-color);
+}
+
+.btn-main:hover {
+    color: #fff;
+    background: var(--dark-primary-color);
 }
 
 .title {
