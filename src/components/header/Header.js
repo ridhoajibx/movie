@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Logo from '../../assets/logo.png'
-import FormLogin from '../../pages/auth/login/FormLogin';
-import FormSignup from '../../pages/auth/registration/FormSignup';
 import './Header.css'
 
 const Header = ({ children }) => {
