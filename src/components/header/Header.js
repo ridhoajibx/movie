@@ -42,12 +42,11 @@ const Header = ({ children }) => {
 
                                 <li className="nav-item dropdown mt-2 mt-md-0">
                                     <a className="nav-link nav-link dropdown-toggle font-weight-bolder" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                                        <img className="profileImg mr-1" src={ profileImg } alt="profile-img" />
+                                        <img className="profileImg rounded-circle mr-1" src={ profileImg } alt="profile-img" />
                                         Jumakri Ridho Fauzi
                                     </a>
-                                    <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <li><a className="dropdown-item" href="#">Profile</a></li>
-                                        <li><a className="dropdown-item" href="#">Setting</a></li>
+                                    <ul className="py-0 dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <li><Link className="dropdown-item" to="/user">Profile</Link></li>
                                         <li><a className="dropdown-item" href="#">Help</a></li>
                                         <li><a className="dropdown-item" href="#">Sign Out</a></li>
                                     </ul>

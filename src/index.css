@@ -11,7 +11,8 @@ code {
     font-family: 'Roboto', sans-serif;
 }
 
-/* Variabel */ 
+/* Variabel */
+
 :root {
     --primary-color: #4bb9a2;
     --light-primary-color: #7cc7b7;
@@ -20,6 +21,7 @@ code {
 }
 
 /* color */
+
 .primary-color {
     color: var(--primary-color);
 }
@@ -29,14 +31,20 @@ code {
 }
 
 .btn-main {
-    padding: 8px 14px;
-    color: #fff;
-    background: var(--primary-color);
+    cursor: pointer;
+    border: 1px solid var(--primary-color);
+    box-shadow: 5px -5px 0px var(--light-primary-color);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--dark-primary-color);
+    padding: 6px 14px;
+    transition: all .15s ease;
 }
 
 .btn-main:hover {
+    box-shadow: 0px 0px 0px var(--light-primary-color);
+    background: var(--primary-color);
     color: #fff;
-    background: var(--dark-primary-color);
 }
 
 .title {
@@ -49,13 +57,14 @@ code {
     margin-right: -10rem;
 }
 
-@media(min-width:1024px){
+@media(min-width:1024px) {
     .navbar-brand {
         margin-right: 1rem;
     }
 }
 
 /* Pagination customize */
+
 .page-item .page-link {
     border: none;
     color: var(--bg-main-color);
@@ -71,7 +80,6 @@ code {
         margin-left: 60px;
     }
 }
-
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
