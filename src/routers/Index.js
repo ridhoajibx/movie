@@ -24,20 +24,20 @@ const Index = () => {
                 </Header>
             </Route>
 
-            <Route path="/user/edit">
+            <Route exact path="/user/edit">
                 <Header>
                     <UserEdit />
                 </Header>
             </Route>
 
-            <Route path="/movies/:searchMovies">
+            <Route exact path="/movies/:searchMovies">
                 <Header>
                     <Search />
                 </Header>
             </Route>
 
-            <Route path="/login" component={ Login } />
-            <Route path="/register" component={ Signup } />
+            <Route exact path="/login" component={ Login } />
+            <Route exact path="/register" component={ Signup } />
 
             <Route path="*" component={ NotFound }/>
         </Switch>

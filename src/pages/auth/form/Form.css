@@ -8,7 +8,7 @@
   --base-border-radius: 0.25rem;
   --ease: cubic-bezier(0.075, 0.82, 0.165, 1);
   --duration: 350ms;
-  --font-size: 1.25rem;
+  --font-size: 1rem;
 }
 
 * {
@@ -126,7 +126,7 @@ h2 {
 }
 .input-group input {
   border-radius: var(--base-border-radius);
-  padding-left: calc(var(--space-s) + 60px);
+  padding-left: calc(var(--space-xs) + 60px);
 }
 .input-group .icon {
   position: absolute;
@@ -178,7 +178,7 @@ input {
           flex: 1 1 0;
   width: 100%;
   outline: none;
-  padding: var(--space-s);
+  padding: var(--space-xs);
   font-size: var(--font-size);
   font-family: var(--font-family);
   color: var(--primary-color);
