@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Logo from '../../assets/logo.png'
-import profileImg from '../../assets/profile.jpeg';
 import './Header.css'
 
 const Header = ({ children }) => {
@@ -36,11 +35,11 @@ const Header = ({ children }) => {
                                 <input onChange={ handleChange } value={ searchMovies } className="form-control searchInput" type="search" placeholder="Search movies" aria-label="Search" />
                             </form>
                             <ul className="navbar-nav ml-auto">
-                                {/* <li className="nav-item active">
-                                    <button className="nav-link btn btn-link font-weight-bolder" to="/register">Sign in</button>
-                                </li> */}
+                                <li className="nav-item">
+                                    <Link className="nav-link font-weight-bolder" to="/login">Login</Link>
+                                </li>
 
-                                <li className="nav-item dropdown mt-2 mt-md-0">
+                                {/* <li className="nav-item dropdown mt-2 mt-md-0">
                                     <a className="nav-link nav-link dropdown-toggle font-weight-bolder" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                                         <img className="profileImg rounded-circle mr-1" src={ profileImg } alt="profile-img" />
                                         Jumakri Ridho Fauzi
@@ -50,13 +49,13 @@ const Header = ({ children }) => {
                                         <li><a className="dropdown-item" href="#">Help</a></li>
                                         <li><a className="dropdown-item" href="#">Sign Out</a></li>
                                     </ul>
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                     </div>
                 </nav>
             </header>
-
+            
             <main>
                 {children}
             </main>
