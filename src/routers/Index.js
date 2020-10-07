@@ -8,6 +8,7 @@ import UserEdit from '../pages/auth/user/Edit';
 import Signin from '../pages/auth/form/Signin';
 import NotFound from '../pages/errors/NotFound';
 import Signup from '../pages/auth/form/Signup';
+import DetailMovies from '../pages/detail/DetailMovies';
 
 const Index = () => {
     return (
@@ -33,6 +34,12 @@ const Index = () => {
             <Route exact path="/movies/:searchMovies">
                 <Header>
                     <Search />
+                </Header>
+            </Route>
+
+            <Route exact path="/movies/detail">
+                <Header>
+                    <DetailMovies />
                 </Header>
             </Route>
 
