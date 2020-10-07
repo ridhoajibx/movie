@@ -1,9 +1,14 @@
 import React from 'react';
+import Footer from '../../components/footer/Footer';
+import HeroDetail from './detailMovies/HeroDetail';
+import Navpills from './detailMovies/Navpills';
 
 const Show = () => {
     return (
         <div>
-            this is show by id movie
+            <HeroDetail />
+            <Navpills />
+            <Footer />
         </div>
     );
 }
