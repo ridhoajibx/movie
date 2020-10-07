@@ -6,14 +6,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import './Form.css';
 
-const LoginSchema = yup.object().shape({
+const SigninSchema = yup.object().shape({
     email: yup.string().required().email(),
     password: yup.string().required(),
 });
 
-const Login = () => {
+const Signin = () => {
     const { register, handleSubmit, errors } = useForm({
-        resolver: yupResolver(LoginSchema)
+        resolver: yupResolver(SigninSchema)
     })
 
     const onSubmit = (data) => {
@@ -29,7 +29,7 @@ const Login = () => {
                         <div className="form-inner">
                             <div className="form-title">
                                 <div className="d-flex justify-content-between align-itams-center">
-                                    <h2 className="brandText">Login</h2>
+                                    <h2 className="brandText">Sign in</h2>
                                     <Link to='/' className="btn btn-main d-flex align-items-center">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" className="mr-1 bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
@@ -72,7 +72,7 @@ const Login = () => {
                                 <p>{errors.password?.message}</p>
                             </div>
                             <div className="btn-group">
-                                <button type="submit" className="btn btn-main">Login</button>
+                                <button type="submit" className="btn btn-main">Sign in</button>
                                 <Link className="btn--text ml-5" to="/register">I don't have account?</Link>
                             </div>
                         </div>
@@ -83,4 +83,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default Signin;

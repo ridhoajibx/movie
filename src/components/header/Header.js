@@ -36,7 +36,7 @@ const Header = ({ children }) => {
                             </form>
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item">
-                                    <Link className="nav-link font-weight-bolder" to="/login">Login</Link>
+                                    <Link className="nav-link font-weight-bolder" to="/signin">Sign In</Link>
                                 </li>
 
                                 {/* <li className="nav-item dropdown mt-2 mt-md-0">

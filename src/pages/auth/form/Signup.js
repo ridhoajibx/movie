@@ -1,10 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import './Form.css';
+import Swal from 'sweetalert2';
 
 const schema = yup.object().shape({
     fullname: yup.string().required(),
@@ -15,6 +16,7 @@ const schema = yup.object().shape({
 });
 
 const Signup = () => {
+    let user = useHistory();
     const { register, handleSubmit, errors } = useForm({
         resolver: yupResolver(schema)
     })
@@ -30,10 +32,21 @@ const Signup = () => {
                 password: password,
                 bio: bio,
             })
-            localStorage.setItem("users", res.data.data.token);
-            window.redirect = "/";
+            // localStorage.setItem("users", res.data.data.token);
+            if (res.data.success === true) {
+                user.push('/signin')
+            } else {
+                // console.log(res, "ini console mana");
+                throw res
+            }
         } catch (e) {
-            console.log(e.message);
+            // console.log(e.response, "console response");
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                // text: `${e.response.data.errors.email && 'email has been taken' }, ${e.response.data.errors.username && 'username has been taken'}`
+                text: Object.keys(e.response.data.errors).toString() + ' ' +e.response.data.errors.email
+            })
         }
     };
 
