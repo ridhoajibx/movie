@@ -37,7 +37,7 @@ const Index = () => {
             </Route>
 
             <Route exact path="/signin" component={ Signin } />
-            <Route exact path="/register" component={ Signup } />
+            <Route exact path="/signup" component={ Signup } />
 
             <Route path="*" component={ NotFound }/>
         </Switch>

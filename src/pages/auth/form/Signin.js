@@ -73,7 +73,7 @@ const Signin = () => {
                             </div>
                             <div className="btn-group">
                                 <button type="submit" className="btn btn-main">Sign in</button>
-                                <Link className="btn--text ml-5" to="/register">I don't have account?</Link>
+                                <Link className="btn--text ml-5" to="/signup">I don't have account?</Link>
                             </div>
                         </div>
                     </form>

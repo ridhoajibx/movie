@@ -44,8 +44,8 @@ const Signup = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                // text: `${e.response.data.errors.email && 'email has been taken' }, ${e.response.data.errors.username && 'username has been taken'}`
-                text: Object.keys(e.response.data.errors).toString() + ' ' +e.response.data.errors.email
+                text: `${e.response.data.errors.email && 'email has been taken'}, ${e.response.data.errors.username && 'username has been taken'}`
+                // text: Object.keys(e.response.data.errors).toString() + ' ' +e.response.data.errors.email
             })
         }
     };
@@ -149,7 +149,7 @@ const Signup = () => {
                             </div>
                             <div className="btn-group">
                                 <button type="submit" className="btn btn-main">Sign up</button>
-                                <Link className="btn--text ml-5" to="/login">Already have account?</Link>
+                                <Link className="btn--text ml-5" to="/signin">Already have account?</Link>
                             </div>
                         </div>
                     </form>
