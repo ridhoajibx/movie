@@ -36,7 +36,7 @@ const Edit = () => {
             <div className="container-fluid mb-5">
                 <div className="row justify-content-center mt--5">
                     <div className="col-md-6">
-                        <div className="card shadow">
+                        <div className="card shadow-lg">
                             <div className="card-header bg-white border-0">
                                 <div className="d-flex justify-content-between align-items-center">
                                     <h3 className="mb-0">Settings</h3>
@@ -72,6 +72,25 @@ const Edit = () => {
                                     </div>
                                 </div>
                                 <div className="mb-3 row">
+                                    <label htmlFor="username" className="col-form-label col-sm-3">Username</label>
+                                    <div className="col-sm-9">
+                                        <input type="text" className="form-control" id="username" defaultValue="ridhoajibx" />
+                                    </div>
+                                </div>
+                                <div className="mb-3 row">
+                                    <label htmlFor="gender" className="col-form-label col-sm-3">Gender</label>
+                                    <div className="col-sm-9">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" checked type="radio" name="gender" id="male" value="male" />
+                                            <label class="form-check-label label mt-2" for="male">Male</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="female" value="female" />
+                                            <label class="form-check-label label mt-2" for="female">Female</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="mb-3 row">
                                     <label htmlFor="email" className="col-form-label col-sm-3">Email</label>
                                     <div className="col-sm-9">
                                         <input type="email" className="form-control" id="email" defaultValue="name@example.com" />
@@ -83,11 +102,8 @@ const Edit = () => {
                                         <input type="password" className="form-control" id="password" defaultValue="password" />
                                     </div>
                                 </div>
-                                <div className="mb-3 row">
-                                    <label htmlFor="about" className="col-form-label col-sm-3">About me</label>
-                                    <div className="col-sm-9">
-                                        <textarea className="form-control" id="about" rows="3" defaultValue='Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, hic?'></textarea>
-                                    </div>
+                                <div>
+                                    <button className="btn btn-main float-right">Change</button>
                                 </div>
                             </div>
                         </div>
