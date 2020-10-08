@@ -10,7 +10,8 @@ import Swal from 'sweetalert2';
 const schema = yup.object().shape({
     fullname: yup.string().required(),
     username: yup.string().required(),
-    bio: yup.string().required(),
+    gender: yup.string().required(),
+    age: yup.number().required(),
     email: yup.string().required().email(),
     password: yup.string().required(),
 });
@@ -103,6 +104,37 @@ const Signup = () => {
                             </div>
 
                             <div className="input-wrapper">
+                                <label className="label" htmlFor="age">Age</label>
+                                <div className="input-group">
+                                    <span className="icon">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"></path>
+                                    </svg>
+                                    </span>
+                                    <input
+                                        type="number"
+                                        name="age"
+                                        id="age"
+                                        data-lpignore="true"
+                                        ref={register}
+                                    />
+                                </div>
+                                <p className="text-danger"><small>{errors.age?.message}</small></p>
+                            </div>
+
+                            <div className="input-wrapper">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male" />
+                                    <label class="form-check-label label mt-2" for="male">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="female" value="female" />
+                                    <label class="form-check-label label mt-2" for="female">Female</label>
+                                </div>
+                                <p className="text-danger"><small>{errors.gender?.message}</small></p>
+                            </div>
+
+                            <div className="input-wrapper">
                                 <label className="label" htmlFor="email">Email</label>
                                 <div className="input-group"><span className="icon">
                                     <svg viewBox="0 0 16 16" className="bi bi-envelope-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -133,19 +165,6 @@ const Signup = () => {
                                     />
                                 </div>
                                 <p className="text-danger"><small>{errors.password?.message}</small></p>
-                            </div>
-                            <div className="input-wrapper">
-                                <label className="label" htmlFor="bio">Bio</label>
-                                <div className="input-group">
-                                    <input
-                                        type="text"
-                                        name="bio"
-                                        id="bio"
-                                        data-lpignore="true"
-                                        ref={register}
-                                    />
-                                </div>
-                                <p>{errors.bio?.message}</p>
                             </div>
                             <div className="btn-group">
                                 <button type="submit" className="btn btn-main">Sign up</button>
