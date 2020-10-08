@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import Header from '../components/header/Header';
 import HomePage from '../pages/home/Home';
 import Search from '../pages/movies/Search';
@@ -9,6 +9,8 @@ import Signin from '../pages/auth/form/Signin';
 import NotFound from '../pages/errors/NotFound';
 import Signup from '../pages/auth/form/Signup';
 import ShowMovie from '../pages/movies/Show';
+import Admin from '../pages/admin/layouts/Admin';
+import Dashboard from '../pages/admin/views/Dashboard';
 
 const Index = () => {
     return (
@@ -41,6 +43,12 @@ const Index = () => {
                 <Header>
                     <ShowMovie />
                 </Header>
+            </Route>
+
+            <Route exact path="/admin/dashboard">
+                <Admin>
+                    <Dashboard />
+                </Admin>
             </Route>
 
             <Route path="/signin" component={ Signin } />
