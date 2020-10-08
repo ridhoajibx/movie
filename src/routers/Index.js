@@ -25,7 +25,7 @@ const Index = () => {
                 </Header>
             </Route>
 
-            <Route exact path="/user/edit">
+            <Route path="/user/edit">
                 <Header>
                     <UserEdit />
                 </Header>
@@ -43,10 +43,10 @@ const Index = () => {
                 </Header>
             </Route>
 
-            <Route exact path="/signin" component={ Signin } />
-            <Route exact path="/signup" component={ Signup } />
+            <Route path="/signin" component={ Signin } />
+            <Route path="/signup" component={ Signup } />
 
-            <Route path="*" component={ NotFound }/>
+            <Route component={ NotFound }/>
         </Switch>
     );
 }
