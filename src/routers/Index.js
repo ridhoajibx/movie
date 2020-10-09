@@ -39,12 +39,6 @@ const Index = () => {
                 </Header>
             </Route> */}
 
-            <Route exact path="/detail">
-                <Header>
-                    <ShowMovie />
-                </Header>
-            </Route>
-
             <Route exact path="/admin/dashboard">
                 <Admin>
                     <Dashboard />
