@@ -33,11 +33,11 @@ const Index = () => {
                 </Header>
             </Route>
 
-            <Route exact path="/movies/:searchMovies">
+            {/* <Route exact path="/movies/:searchMovies">
                 <Header>
                     <Search />
                 </Header>
-            </Route>
+            </Route> */}
 
             <Route exact path="/detail">
                 <Header>

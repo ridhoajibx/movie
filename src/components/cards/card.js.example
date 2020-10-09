@@ -17,10 +17,10 @@ const Card = (props) => {
                 <div className="img1" style={{ backgroundImage: `url(${props.imageUrl})` }}></div>
                 <div className="title">{props.title}</div>
                 <div className="text"> {props.text} </div>
-                <div className="catagory">{props.director} </div>
-                <div className="views">{props.date} </div>
+                <div className="catagory">{props.lang} <i className="fas fa-film"></i></div>
+                <div className="views">{props.date}  <i className="far fa-eye"></i> </div>
                 <div className="rating d-flex align-items-center">
-                    <span className="mr-2">{props.rating ? props.rating : null }</span> <ReactStars {...rating} />
+                    <span className="mr-2">{props.rating}</span> <ReactStars {...rating} />
                 </div>
             </div>
         </div>
