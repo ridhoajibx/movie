@@ -18,7 +18,7 @@ const Card = (props) => {
                 <div className="title">{props.title}</div>
                 <div className="text"> {props.text} </div>
                 <div className="catagory">{props.director} </div>
-                <div className="views">{props.date} </div>
+                <div className="views">{props.date.slice(-4)} </div>
                 <div className="rating d-flex align-items-center">
                     <span className="mr-2">{props.rating ? props.rating : null }</span> <ReactStars {...rating} />
                 </div>

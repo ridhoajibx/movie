@@ -10,14 +10,21 @@ const Index = () => {
     const [movies, setMovies] = useState([]),
         [pages, setPages] = useState(1),
         [limits, setLimits] = useState(10),
+        [totalPages, setTotalPages] = useState(1),
         [loading, setLoading] = useState(false);
 
     const getMovies = async () => {
         setLoading(true)
         try {
-            let url = `${process.env.REACT_APP_URL}/movie/?page=${pages}&limit=${limits}`
+            let page = pages
+            if (pages === 0) {
+                setPages(1)
+                page(1)
+            }
+            let url = `${process.env.REACT_APP_URL}/movie/?page=${page}&limit=${limits}`
             let response = await axios.get(url)
             setMovies(response.data)
+            setTotalPages(response.data.length)
             setLoading(false)
             console.log(response, "movie");
         } catch (e) {
@@ -33,6 +40,24 @@ const Index = () => {
     useEffect(() => {
         getMovies()
     }, [pages, limits]);
+
+    const nextPage = (e) => {
+        e.preventDefault()
+        const currentPage = pages;
+        if (pages < totalPages) {
+            const nextPage = currentPage + 1;
+            setPages(nextPage);
+        }
+    };
+
+    const prevPage = (e) => {
+        e.preventDefault()
+        const currentPage = pages;
+        if (currentPage > 1) {
+            const prevPage = currentPage - 1;
+            setPages(prevPage);
+        }
+    };
 
     return (
         <>
@@ -62,13 +87,13 @@ const Index = () => {
                                 <img src={LoadingPulse} style={{ width: '5%' }} alt="Loading..." />
                             </div>
                         }
-                        {/* <Pagination
-                            nextPage={nextPage}
-                            prevPage={prevPage}
-                            pages={pages}
-                            totalPages={totalPages}
-                        /> */}
                     </div>
+                    <Pagination
+                        nextPage={nextPage}
+                        prevPage={prevPage}
+                        pages={pages}
+                        totalPages={totalPages}
+                    />
                 </div>
             </section>
         </>

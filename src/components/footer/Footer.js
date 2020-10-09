@@ -11,7 +11,7 @@ import pinterest from '../../assets/pinterest.png';
 
 const Footer = () => {
     return (
-        <footer className="bgMainColor footer">
+        <footer className="bgMainColor footer mt-4">
             <div className="container py-4">
                 <div className="row">
                     <div className="col-md-6 col-12">
