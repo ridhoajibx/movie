@@ -26,7 +26,7 @@ const Index = () => {
             setMovies(response.data)
             setTotalPages(response.data.length)
             setLoading(false)
-            console.log(response, "movie");
+            // console.log(response.data, "movie");
         } catch (e) {
             console.log(e.message);
             setLoading(true)
@@ -35,6 +35,7 @@ const Index = () => {
 
     useEffect(() => {
         getMovies()
+        // console.log(getMovies(), "movies");
     }, []);
 
     useEffect(() => {
@@ -69,12 +70,12 @@ const Index = () => {
                             movies.map((movie, index) => {
                                 return (
                                     <Card
+                                        reviews={ movie.Reviews }
                                         key={index}
                                         movieId={movie.id}
                                         imageUrl={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg`}
                                         title={movie.title}
                                         text={!movie.sypnosis ? 'none' : movie.sypnosis}
-                                        rating={movie.sumRating}
                                         director={movie.director}
                                         date={movie.year}
                                     />
