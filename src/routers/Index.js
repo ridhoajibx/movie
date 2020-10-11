@@ -11,6 +11,7 @@ import Signup from '../pages/auth/form/Signup';
 import ShowMovie from '../pages/movies/Show';
 import Admin from '../pages/admin/layouts/Admin';
 import Dashboard from '../pages/admin/views/Dashboard';
+import MovieCategory from '../pages/movies/MovieCategory';
 
 const Index = () => {
     return (
@@ -18,6 +19,12 @@ const Index = () => {
             <Route exact path="/">
                 <Header>
                     <HomePage />
+                </Header>
+            </Route>
+
+            <Route exact path="/category/:category">
+                <Header>
+                    <MovieCategory />
                 </Header>
             </Route>
 
@@ -33,11 +40,11 @@ const Index = () => {
                 </Header>
             </Route>
 
-            {/* <Route exact path="/movies/:searchMovies">
+            <Route exact path="/search/:searchMovie">
                 <Header>
                     <Search />
                 </Header>
-            </Route> */}
+            </Route>
 
             <Route exact path="/admin/dashboard">
                 <Admin>

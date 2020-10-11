@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import qs from 'qs'
 
 import Card from '../../components/cards/Card';
 import Carousel from '../../components/carousel/Carousel';
@@ -10,49 +11,30 @@ import Footer from '../../components/footer/Footer';
 
 const Search = (props) => {
     const [movies, setMovies] = useState([]);
-    const [pages, setPages] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
     const [loading, setLoading] = useState(false)
 
-    const { searchMovies } = useParams();
+    const { searchMovie } = useParams();
+    // `${process.env.REACT_APP_URL}/movie/search`
 
-    useEffect(() => {
-        const getMovies = async () => {
-            setLoading(true)
-            try {
-                let page = pages
-                if (pages === 0) {
-                    setPages(1)
-                    page(1)
-                }
-                let url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_APIKEY}&language=en-US&query=${searchMovies}&page=${page}`
-                let response = await axios.get(url)
-                setMovies(response.data.results)
-                setTotalPages(response.data.total_pages)
+    const getMovie = async() => {
+        setLoading(true)
+        try {
+            let res = await axios.get(`${process.env.REACT_APP_URL}/search/${searchMovie}`)
+            if (res.data.success === true) {
+                setMovies(res.data)
                 setLoading(false)
-            } catch (e) {
-                console.log(e.message);
-                setLoading(true)
+            } else {
+                throw res
             }
-        };
-        getMovies()
-    }, [searchMovies, pages]);
-
-    const nextPage = (e) => {
-        const currentPage = pages;
-        if (pages < totalPages) {
-            const nextPage = currentPage + 1;
-            setPages(nextPage);
+        } catch (e) {
+            console.log(e.message);
+            setLoading(true)
         }
-    };
-
-    const prevPage = (e) => {
-        const currentPage = pages;
-        if (currentPage > 1) {
-            const prevPage = currentPage - 1;
-            setPages(prevPage);
-        }
-    };
+    }
+    
+    useEffect(() => {
+        getMovie()
+    }, [searchMovie])
 
     return (
         <>
@@ -71,7 +53,7 @@ const Search = (props) => {
                         </div>
                         <div className="mt-4">
                             <h4 className="title font-weight-bold text-muted">
-                                {movies.length === 0 ? `Movies "${searchMovies}"  are undifined !` : `Search Movies : "${searchMovies}"`}
+                                {movies ? `Movies "${searchMovie}"  are undifined !` : `Search Movies : "${searchMovie}"`}
                             </h4>
                         </div>
                     </div>
@@ -81,19 +63,18 @@ const Search = (props) => {
             <section>
                 <div className="container">
                     <div className="row">
-                        {!loading && movies.length > 0 &&
+                        {!loading && movies &&
                             movies.map((movie, index) => {
                                 return (
                                     <Card
                                         key={index}
                                         movieId={movie.id}
-                                        imageUrl={!movie.poster_path ? `https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg` :
-                                            `https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                                        imageUrl={!movie.poster ? `https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg` :
+                                            `https://image.tmdb.org/t/p/w500/${movie.poster}`}
                                         title={movie.title}
-                                        text={!movie.overview ? 'none' : movie.overview}
-                                        rating={movie.vote_average}
-                                        lang={movie.original_language}
-                                        date={!movie.release_date ? 'none' : movie.release_date.slice(0, 4)}
+                                        text={!movie.synopsis ? 'none' : movie.synopsis}
+                                        // trailerUrl={movie.trailer}
+                                        date={!movie.year ? 'none' : movie.year.slice(0, 4)}
                                     />
                                 )
                             })
@@ -104,12 +85,6 @@ const Search = (props) => {
                                 <img src={LoadingPulse} style={{ width: '5%' }} alt="Loading..." />
                             </div>
                         }
-                        <Pagination
-                            nextPage={nextPage}
-                            prevPage={prevPage}
-                            pages={pages}
-                            totalPages={totalPages}
-                        />
                     </div>
                 </div>
             </section>

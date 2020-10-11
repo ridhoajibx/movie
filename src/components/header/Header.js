@@ -1,21 +1,46 @@
-import React, { useState } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import React from 'react';
+import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
+import * as yup from 'yup';
+import Swal from 'sweetalert2';
+
 import Logo from '../../assets/logo.png'
 import './Header.css'
+import { useForm } from 'react-hook-form';
 
+const schema = yup.object().shape({
+    searchInput: yup.string(),
+});
 const Header = ({ children }) => {
-    const [searchMovies, setSearchMovies] = useState("");
-    let movies = useHistory();
+    let searchMovie = useHistory();
+    const { register, handleSubmit, errors } = useForm({
+        resolver: yupResolver(schema)
+    })
 
-    const handleChange = (e) => {
-       e.preventDefault()
-        setSearchMovies(e.target.value);
-    }
-
-    const handleSubmit = (e) => {
-       e.preventDefault()
-       movies.push(`/movies/${searchMovies}`);
-    }
+    const onSubmit = async (data) => {
+        let { searchInput } = data;
+        let config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }
+        try {
+            let res = await axios.get(`${process.env.REACT_APP_URL}/search/`, {searchInput : searchInput}, config)
+            if (res.data.success === true) {
+                searchMovie.push(`/search/${searchMovie}`)
+            } else {
+                throw res
+            }
+        } catch (e) {
+            console.log(e.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `there is no movie`
+            })
+        }
+    };
     return (
         <div>
             <header>
@@ -31,8 +56,15 @@ const Header = ({ children }) => {
                             <span className="navbar-toggler-icon"></span>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarCollapse">
-                            <form onSubmit={ handleSubmit } className="mt-2 mt-md-0 mx-auto">
-                                <input onChange={ handleChange } value={ searchMovies } className="form-control searchInput" type="search" placeholder="Search movies" aria-label="Search" />
+                            <form onSubmit={handleSubmit(onSubmit)} className="mt-2 mt-md-0 mx-auto">
+                                <input 
+                                    className="form-control searchInput" 
+                                    type="text"
+                                    name="searchInput"
+                                    placeholder="Search movies" 
+                                    aria-label="Search"
+                                    ref={register}
+                                />
                             </form>
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item">
