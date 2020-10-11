@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import './Form.css';
+import Swal from 'sweetalert2';
 
 const SigninSchema = yup.object().shape({
     username: yup.string().required(),
@@ -12,12 +13,38 @@ const SigninSchema = yup.object().shape({
 });
 
 const Signin = () => {
+    const [token, setToken] = useState("")
+    let user = useHistory()
     const { register, handleSubmit, errors } = useForm({
         resolver: yupResolver(SigninSchema)
     })
-
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = async(data) => {
+        let { username, password } = data;
+        console.log(username);
+        try {
+            let res = await axios.post(`${process.env.REACT_APP_URL}/login`, {
+                username: username,
+                password: password
+            })
+            // localStorage.setItem("users", res.data.data.token);
+            if (res.status === 200) {
+                user.push({
+                    pathname: '/',
+                    state: token
+                })
+                setToken(localStorage.setItem("token", res.data.access_token))
+            } else {
+                console.log(res, "ini console mana");
+                throw res
+            }
+        } catch (e) {
+            // console.log(e.response, "console response");
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `${e.status}`
+            })
+        }
     }
 
 

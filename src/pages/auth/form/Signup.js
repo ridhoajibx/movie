@@ -38,10 +38,9 @@ const Signup = () => {
             // localStorage.setItem("users", res.data.data.token);
             if (res.status === 201) {
                 user.push({
-                    pathname: '/',
-                    state: token
+                    pathname: '/login',
                 })
-                setToken(localStorage.setItem("token", res.data.access_token))
+                // setToken(localStorage.setItem("token", res.data.access_token))
             } else {
                 console.log(res, "ini console mana");
                 throw res
@@ -52,7 +51,6 @@ const Signup = () => {
                 icon: 'error',
                 title: 'Oops...',
                 text: `something error`
-                // text: Object.keys(e.response.data.errors).toString() + ' ' +e.response.data.errors.email
             })
         }
     };

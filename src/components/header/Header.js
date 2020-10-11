@@ -30,7 +30,7 @@ const Header = ({ children, token }) => {
         try {
             let res = await axios.get(`${process.env.REACT_APP_URL}/search`, {searchInput : searchInput}, config)
             if (res.success === 200) {
-                searchMovie.push(`/search/${searchMovie}`)
+                searchMovie.push(`/search`)
             } else {
                 throw res
             }
@@ -51,7 +51,7 @@ const Header = ({ children, token }) => {
                         <Link className="navbar-brand font-weight-bolder d-flex align-items-center" to="/">
                             <img src={Logo} alt="" className="brandImage" />
                             <div className="brandText">
-                                ALL-STAR MOVIE
+                                ALLSTAR MOVIE
                             </div>
                         </Link>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

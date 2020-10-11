@@ -40,7 +40,7 @@ const Index = () => {
                 </Header>
             </Route>
 
-            <Route exact path="/search/:searchMovie">
+            <Route exact path="/search/">
                 <Header>
                     <Search />
                 </Header>
