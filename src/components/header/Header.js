@@ -7,17 +7,19 @@ import Swal from 'sweetalert2';
 
 import Logo from '../../assets/logo.png'
 import './Header.css'
+import profileImg from '../../assets/profile.jpeg'
 import { useForm } from 'react-hook-form';
 
 const schema = yup.object().shape({
     searchInput: yup.string(),
 });
-const Header = ({ children }) => {
+const Header = ({ children, token }) => {
     let searchMovie = useHistory();
+    
+    // Search
     const { register, handleSubmit, errors } = useForm({
         resolver: yupResolver(schema)
     })
-
     const onSubmit = async (data) => {
         let { searchInput } = data;
         let config = {
@@ -26,8 +28,8 @@ const Header = ({ children }) => {
             }
         }
         try {
-            let res = await axios.get(`${process.env.REACT_APP_URL}/search/`, {searchInput : searchInput}, config)
-            if (res.data.success === true) {
+            let res = await axios.get(`${process.env.REACT_APP_URL}/search`, {searchInput : searchInput}, config)
+            if (res.success === 200) {
                 searchMovie.push(`/search/${searchMovie}`)
             } else {
                 throw res
@@ -37,7 +39,7 @@ const Header = ({ children }) => {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: `there is no movie`
+                text: `${data.title}`
             })
         }
     };
@@ -67,11 +69,12 @@ const Header = ({ children }) => {
                                 />
                             </form>
                             <ul className="navbar-nav ml-auto">
+                                {!token ? 
                                 <li className="nav-item">
                                     <Link className="nav-link font-weight-bolder" to="/signin">Sign In</Link>
-                                </li>
+                                </li> :
 
-                                {/* <li className="nav-item dropdown mt-2 mt-md-0">
+                                <li className="nav-item dropdown mt-2 mt-md-0">
                                     <a className="nav-link nav-link dropdown-toggle font-weight-bolder" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                                         <img className="profileImg rounded-circle mr-1" src={ profileImg } alt="profile-img" />
                                         Jumakri Ridho Fauzi
@@ -81,7 +84,9 @@ const Header = ({ children }) => {
                                         <li><a className="dropdown-item" href="#">Help</a></li>
                                         <li><a className="dropdown-item" href="#">Sign Out</a></li>
                                     </ul>
-                                </li> */}
+                                </li>
+
+                                }
                             </ul>
                         </div>
                     </div>
