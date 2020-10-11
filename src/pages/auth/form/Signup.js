@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -17,27 +17,33 @@ const schema = yup.object().shape({
 });
 
 const Signup = () => {
+    const [token, setToken] = useState("")
     let user = useHistory();
     const { register, handleSubmit, errors } = useForm({
         resolver: yupResolver(schema)
     })
 
     const onSubmit = async (data) => {
-        let { fullname, username, email, password, bio } = data;
+        let { fullname, username, age, gender, email, password } = data;
         console.log(email);
         try {
-            let res = await axios.post('http://appdoto.herokuapp.com/api/users/', {
+            let res = await axios.post(`${process.env.REACT_APP_URL}/register`, {
                 fullname: fullname,
                 username: username,
+                age: age,
+                gender: gender,
                 email: email,
-                password: password,
-                bio: bio,
+                password: password
             })
             // localStorage.setItem("users", res.data.data.token);
-            if (res.data.success === true) {
-                user.push('/signin')
+            if (res.status === 201) {
+                user.push({
+                    pathname: '/',
+                    state: token
+                })
+                setToken(localStorage.setItem("token", res.data.access_token))
             } else {
-                // console.log(res, "ini console mana");
+                console.log(res, "ini console mana");
                 throw res
             }
         } catch (e) {
@@ -45,7 +51,7 @@ const Signup = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: `${e.response.data.errors.email && 'email has been taken'}, ${e.response.data.errors.username && 'username has been taken'}`
+                text: `something error`
                 // text: Object.keys(e.response.data.errors).toString() + ' ' +e.response.data.errors.email
             })
         }
@@ -123,13 +129,13 @@ const Signup = () => {
                             </div>
 
                             <div className="input-wrapper">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male" />
-                                    <label class="form-check-label label mt-2" for="male">Male</label>
+                                <div className="form-check form-check-inline">
+                                <input className="form-check-input" name="gender" type="radio" value="male" ref={register}/>
+                                    <label className="form-check-label label mt-2" htmlFor="male">Male</label>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="female" value="female" />
-                                    <label class="form-check-label label mt-2" for="female">Female</label>
+                                <div className="form-check form-check-inline">
+                                    <input className="form-check-input" type="radio" name="gender" id="female" value="female" ref={register} />
+                                    <label className="form-check-label label mt-2" htmlFor="female">Female</label>
                                 </div>
                                 <p className="text-danger"><small>{errors.gender?.message}</small></p>
                             </div>
