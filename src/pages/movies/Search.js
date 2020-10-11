@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
-import qs from 'qs'
 
 import Card from '../../components/cards/Card';
 import Carousel from '../../components/carousel/Carousel';
-import Pagination from '../../components/pagination/Pagination';
 import LoadingPulse from '../../assets/loading.svg';
 import Footer from '../../components/footer/Footer';
 
@@ -13,14 +11,14 @@ const Search = (props) => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(false)
 
-    const { searchMovie } = useParams();
+    const { searchMovies } = useParams();
     // `${process.env.REACT_APP_URL}/movie/search`
 
     const getMovie = async() => {
         setLoading(true)
         try {
-            let res = await axios.get(`${process.env.REACT_APP_URL}/search/${searchMovie}`)
-            if (res.data.success === true) {
+            let res = await axios.get(`${process.env.REACT_APP_URL}/movie/search/?title=${searchMovies}`)
+            if (res.status === 201) {
                 setMovies(res.data)
                 setLoading(false)
             } else {
@@ -34,7 +32,7 @@ const Search = (props) => {
     
     useEffect(() => {
         getMovie()
-    }, [searchMovie])
+    }, [searchMovies])
 
     return (
         <>
@@ -53,7 +51,7 @@ const Search = (props) => {
                         </div>
                         <div className="mt-4">
                             <h4 className="title font-weight-bold text-muted">
-                                {movies ? `Movies "${searchMovie}"  are undifined !` : `Search Movies : "${searchMovie}"`}
+                                {movies ? `Movies "${searchMovies}"  are undifined !` : `Search Movies : "${searchMovies}"`}
                             </h4>
                         </div>
                     </div>
@@ -70,11 +68,11 @@ const Search = (props) => {
                                         key={index}
                                         movieId={movie.id}
                                         imageUrl={!movie.poster ? `https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg` :
-                                            `https://image.tmdb.org/t/p/w500/${movie.poster}`}
+                                            `${movie.poster}`}
                                         title={movie.title}
                                         text={!movie.synopsis ? 'none' : movie.synopsis}
                                         // trailerUrl={movie.trailer}
-                                        date={!movie.year ? 'none' : movie.year.slice(0, 4)}
+                                        date={!movie.year ? 'none' : movie.year.slice(-4)}
                                     />
                                 )
                             })

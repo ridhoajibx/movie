@@ -50,7 +50,7 @@ const Signup = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: `something error`
+                text: `${e.status}`
             })
         }
     };

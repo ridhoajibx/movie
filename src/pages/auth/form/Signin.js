@@ -6,6 +6,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import './Form.css';
 import Swal from 'sweetalert2';
+import { useEffect } from 'react';
+import qs from 'qs';
 
 const SigninSchema = yup.object().shape({
     username: yup.string().required(),
@@ -20,12 +22,19 @@ const Signin = () => {
     })
     const onSubmit = async(data) => {
         let { username, password } = data;
-        console.log(username);
+        // console.log(username);
         try {
-            let res = await axios.post(`${process.env.REACT_APP_URL}/login`, {
-                username: username,
-                password: password
-            })
+            let res = await axios.post(`${process.env.REACT_APP_URL}/login`, 
+                qs.stringify({
+                    username: username,
+                    password: password
+                }),
+                {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                }
+            )
             // localStorage.setItem("users", res.data.data.token);
             if (res.status === 200) {
                 user.push({
@@ -33,8 +42,8 @@ const Signin = () => {
                     state: token
                 })
                 setToken(localStorage.setItem("token", res.data.access_token))
-            } else {
                 console.log(res, "ini console mana");
+            } else {
                 throw res
             }
         } catch (e) {
@@ -42,12 +51,10 @@ const Signin = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: `${e.status}`
+                text: `${e.response.data.msg}`
             })
         }
     }
-
-
     return (
         <div>
             <div className="body-form">
