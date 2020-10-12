@@ -5,15 +5,69 @@ import Hero from './components/Hero';
 import Footer from '../../../components/footer/Footer';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup.object().shape({
+    profileimage: yup.mixed(),
+    fullname: yup.string(),
+    username: yup.string(),
+    email: yup.string().email(),
+    password: yup.string(),
+});
 
 const Edit = (props) => {
-    console.log(props);
+    const { register, handleSubmit, errors } = useForm({
+        resolver: yupResolver(schema)
+    });
+    const onSubmit = async data => {
+        
+        try {
+            let { fullname, username, profileimage, email, password } = data;
+            const formData = new formData();
+            formData.append("profileimage", profileimage)
+            formData.append("fullname", fullname)
+            formData.append("username", username)
+            formData.append("email", email)
+            formData.append("password", password)
+            let url = `${process.env.REACT_APP_URL}/user/update`
+            let res = await axios(url,
+                {
+                    method: "PUT",
+                    headers:{
+                        "access_token" : token
+                    },
+                    body: formData
+                }
+            )
+            if (res.status === 200) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Yeay",
+                    text: "data has been updated!"
+                })
+                window.history.back('/user')
+            } else {
+                throw res
+            }
+            // console.log(res);
+        } catch (e) {
+            Swal.fire({
+                icon: "error",
+                title: "Upps",
+                text: `Something wrong`
+            })
+            console.log(e);
+        }
+    }
+
     const [token, setToken] = useState(localStorage.getItem("token"))
     const [user, setUser] = useState({
         id: "",
         fullname: "",
         username: "",
-        image: "",
+        profileimage: "",
         gender: "",
         age: "",
         email: "",
@@ -39,7 +93,7 @@ const Edit = (props) => {
                     age: res.data.age,
                     email: res.data.email,
                     password: res.data.password,
-                    image: res.data.profileimage,
+                    profileimage: res.data.profileimage,
                 })
             } else {
                 throw res
@@ -56,60 +110,6 @@ const Edit = (props) => {
     useEffect(() => {
         getUser()
     }, [])
-
-    const handleChangeImg = e => {
-        if (e.target.files.length) {
-            setUser({
-                image: e.target.files[0]
-            });
-        }
-    };
-
-    const handleChangeVal = (e) => {
-        let target = e.target;
-        let value = target.type === 'checkbox' ? target.checked : target.value;
-        let name = target.name;
-        setUser({
-            [name]: value,
-        });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const { username, fullname, password, email, image } = user;
-        try {
-            const formData = new FormData();
-            formData.append('username', username);
-            formData.append('fullname', fullname);
-            formData.append('image', image);
-            formData.append('email', email);
-            formData.append('password', password);
-
-            console.log("form data", formData);
-
-            let res = await axios({
-                method: "put",
-                url: `${process.env.REACT_APP_URL}/user/update`,
-                body: formData,
-                headers: {
-                    'access_token': token,
-                    'Content-Type': 'multipart/form-data'
-                }
-            })
-            console.log("success", res);
-            if (res.status === 200) {
-                setUser(formData)
-                window.history.back('/user')
-            }
-        } catch (error) {
-            console.log(error.response);
-            Swal.fire({
-                title: "Update failed",
-                text: error.response.data,
-                icon: "error",
-            });
-        }
-    };
 
     // useEffect(() => {
     //     handleSubmit()
@@ -129,12 +129,12 @@ const Edit = (props) => {
                                 </div>
                             </div>
                             <div className="card-body">
-                                <form onSubmit={handleSubmit}>
+                                <form onSubmit={handleSubmit(onSubmit)}>
                                     <div className="d-flex justify-content-center">
                                         <div className="mb-3">
                                             <label htmlFor="upload-button">
-                                                {user.image ? (
-                                                    <img src={user.image} alt="dummy" className="rounded-circle img-upload" />
+                                                {user.profileimage ? (
+                                                    <img src={user.profileimage} alt="file" className="rounded-circle img-upload" />
                                                 ) : (
                                                         <>
                                                             <div className="text-center btn-main">Upload your photo</div>
@@ -144,8 +144,9 @@ const Edit = (props) => {
                                             <input
                                                 type="file"
                                                 id="upload-button"
+                                                name="profileimage"
                                                 style={{ display: "none" }}
-                                                onChange={handleChangeImg}
+                                                ref={register}
                                             />
                                         </div>
                                     </div>
@@ -157,8 +158,8 @@ const Edit = (props) => {
                                                 className="form-control"
                                                 id="fullname"
                                                 name="fullname"
-                                                value={user.fullname}
-                                                onChange={handleChangeVal}
+                                                defaultValue={user.fullname}
+                                                ref={register}
                                             />
                                         </div>
                                     </div>
@@ -169,8 +170,9 @@ const Edit = (props) => {
                                                 type="text"
                                                 className="form-control"
                                                 id="username"
-                                                value={user.username}
-                                                onChange={handleChangeVal}
+                                                name="username"
+                                                defaultValue={user.username}
+                                                ref={register}
                                             />
                                         </div>
                                     </div>
@@ -182,8 +184,8 @@ const Edit = (props) => {
                                                 className="form-control"
                                                 id="email"
                                                 name="email"
-                                                value={user.email}
-                                                onChange={handleChangeVal}
+                                                defaultValue={user.email}
+                                                ref={register}
                                             />
                                         </div>
                                     </div>
@@ -195,8 +197,8 @@ const Edit = (props) => {
                                                 className="form-control"
                                                 id="password"
                                                 name="password"
-                                                value={user.password}
-                                                onChange={handleChangeVal}
+                                                defaultValue={user.password}
+                                                ref={register}
                                             />
                                         </div>
                                     </div>
