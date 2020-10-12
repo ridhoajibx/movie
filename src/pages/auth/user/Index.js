@@ -1,14 +1,69 @@
 import React from 'react';
+import axios from 'axios';
+
 import './User.css'
 import ProfileImg from '../../../assets/profile.jpeg'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Footer from '../../../components/footer/Footer';
 import Hero from './components/Hero';
+import { useState } from 'react';
+import Swal from 'sweetalert2';
+import { useEffect } from 'react';
 
-const Index = () => {
+const Index = (props) => {
+    let token = localStorage.getItem("token")
+    const [user, setUser] = useState({
+        id: "",
+        fullname: "",
+        username: "",
+        image: "",
+        gender: "",
+        age: "",
+        email: "",
+        password: ""
+    })
+
+    const getUser = async () => {
+        try {
+            let url = `${process.env.REACT_APP_URL}/user/find/`
+            let res = await axios.get(url,
+                {
+                    headers: {
+                        "access_token": token
+                    }
+                }
+            )
+            if (res.status === 201) {
+                setUser({
+                    id: res.data.id,
+                    fullname: res.data.fullname,
+                    username: res.data.username,
+                    image: res.data.profileimage,
+                    gender: res.data.gender,
+                    age: res.data.age,
+                    email: res.data.email,
+                    password: res.data.password
+                })
+            } else {
+                throw res
+            }
+        } catch (e) {
+            Swal.fire({
+                title: "oppps",
+                icon: "error",
+                text: `${e.response.data.msg}`
+            })
+        }
+    }
+
+    useEffect(() => {
+        getUser()
+    }, [])
+
+    console.log(user);
     return (
         <>
-            <Hero />
+            <Hero username={user.username} />
             <div className="container-fluid mb-5">
                 <div className="row">
                     <div className="col-md-6 mb-5 md-mb-0 mx-auto mt--5">
@@ -17,7 +72,7 @@ const Index = () => {
                                 <div className="col-lg-3">
                                     <div className="card-profile-image">
                                         <div>
-                                            <img src={ProfileImg} className="rounded-circle" />
+                                            <img src={!user.image ? null : user.image} className="rounded-circle" />
                                         </div>
                                     </div>
                                 </div>
@@ -30,39 +85,18 @@ const Index = () => {
                                         </div>
                                     </div>
                                 </div>
-                                {/* <div className="row">
-                                    <div className="col">
-                                        <div className="card-profile-stats d-flex justify-content-center">
-                                            <div>
-                                                <span className="heading">22</span>
-                                                <span className="description">Friends</span>
-                                            </div>
-                                            <div>
-                                                <span className="heading">10</span>
-                                                <span className="description">Photos</span>
-                                            </div>
-                                            <div>
-                                                <span className="heading">89</span>
-                                                <span className="description">Comments</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> */}
                                 <div className="text-center">
                                     <div className="font-weight-bold">
-                                        Jumakri Ridho Fauzi<span className="font-weight-light">, 27</span>
+                                        {user.fullname}<span className="font-weight-light">, {user.age}</span>
+                                    </div>
+                                    <div className="font-weight-bold">
+                                        <span className="font-weight-light">{`@${user.username}`}</span>
                                     </div>
                                     <div>
-                                        <small>Batam, Indonesia</small>
+                                        <small>{!user.gender ? 'gender none': user.gender}</small>
                                     </div>
-                                    <div className="font-weight-bold mt-4">
-                                        Front End Developer - Creative Tim F
-                                    </div>
-                                    <div>
-                                        <small>Glints Academy Batch 7</small>
-                                    </div>
-                                    <div>
-                                        <small>University of Ibnu Sina</small>
+                                    <div className="font-weight-bold">
+                                        {user.email}
                                     </div>
                                 </div>
                             </div>

@@ -44,7 +44,7 @@ export default function MovieCategory() {
                                 return (
                                     <Card
                                         key={index}
-                                        movieId={movie.Movie.id}
+                                        movieId={movie.MovieId}
                                         imageUrl={!movie.Movie.poster ? null : movie.Movie.poster}
                                         title={movie.Movie.title}
                                         text={!movie.Movie.synopsis ? 'none' : movie.Movie.synopsis}
