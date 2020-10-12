@@ -7,13 +7,13 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Edit = (props) => {
-    // console.log(props);
+    console.log(props);
     const [token, setToken] = useState(localStorage.getItem("token"))
     const [user, setUser] = useState({
         id: "",
         fullname: "",
         username: "",
-        image: {},
+        image: "",
         gender: "",
         age: "",
         email: "",
@@ -60,10 +60,7 @@ const Edit = (props) => {
     const handleChangeImg = e => {
         if (e.target.files.length) {
             setUser({
-                image: {
-                    preview: URL.createObjectURL(e.target.files[0]),
-                    file: e.target.files[0]
-                }
+                image: e.target.files[0]
             });
         }
     };
@@ -73,34 +70,44 @@ const Edit = (props) => {
         let value = target.type === 'checkbox' ? target.checked : target.value;
         let name = target.name;
         setUser({
-          [name]: value,
+            [name]: value,
         });
-      };
+    };
 
-    const handleSubmit = async () => {
-        const formData = new FormData();
-        // formData.append("user", image.raw);
-
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const { username, fullname, password, email, image } = user;
         try {
-            let res = await axios(`${process.env.REACT_APP_URL}/user/update`, {
+            const formData = new FormData();
+            formData.append('username', username);
+            formData.append('fullname', fullname);
+            formData.append('image', image);
+            formData.append('email', email);
+            formData.append('password', password);
+
+            console.log("form data", formData);
+
+            let res = await axios({
                 method: "put",
+                url: `${process.env.REACT_APP_URL}/user/update`,
+                body: formData,
                 headers: {
-                    "access_token": token
+                    'access_token': token,
+                    'Content-Type': 'multipart/form-data'
                 }
-            });
+            })
+            console.log("success", res);
             if (res.status === 200) {
-                // setImage(formData)
-                setUser({
-                    fullname: res.data.fullname,
-                    username: res.data.username,
-                    email: res.data.email,
-                    password: res.data.password,
-                })
-            } else {
-                throw res
+                setUser(formData)
+                window.history.back('/user')
             }
-        } catch (e) {
-            console.log(e.response.data.msg);
+        } catch (error) {
+            console.log(error.response);
+            Swal.fire({
+                title: "Update failed",
+                text: error.response.data,
+                icon: "error",
+            });
         }
     };
 
@@ -126,8 +133,8 @@ const Edit = (props) => {
                                     <div className="d-flex justify-content-center">
                                         <div className="mb-3">
                                             <label htmlFor="upload-button">
-                                                {user.image.preview ? (
-                                                    <img src={user.image.preview} alt="dummy" className="rounded-circle img-upload" />
+                                                {user.image ? (
+                                                    <img src={user.image} alt="dummy" className="rounded-circle img-upload" />
                                                 ) : (
                                                         <>
                                                             <div className="text-center btn-main">Upload your photo</div>
