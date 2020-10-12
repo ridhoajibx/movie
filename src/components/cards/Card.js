@@ -6,7 +6,13 @@ import { useEffect } from 'react';
 
 
 const Card = (props) => {
-    const [ratings, setRatings] = useState(8);
+    const [ratings, setRatings] = useState(0);
+    let values = {
+        size: 20,
+        value: ratings / 2,
+        isHalf: true,
+        edit: false
+    };
     const getRating = () => {
         let total = 0
         if (props.reviews) {
@@ -22,13 +28,6 @@ const Card = (props) => {
         getRating()
     }, [])
 
-    const values = {
-        size: 20,
-        value: ratings / 2,
-        isHalf: true,
-        edit: false
-    }
-
     // console.log(props.reviews);
     return (
         <div className="cardMovie">
@@ -39,7 +38,7 @@ const Card = (props) => {
                 {/* <div className="views">{props.lang}</div> */}
                 <div className="catagory">{props.date}</div>
                 <div className="rating d-flex align-items-center">
-                <span className="mr-2"> <ReactStars {...values } /> </span>
+                <span className="mr-2"> <ReactStars {...values} /> </span>
                 </div>
             </div>
         </div>
