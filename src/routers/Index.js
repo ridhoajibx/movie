@@ -25,6 +25,12 @@ const Index = () => {
                 </Header>
             </Route>
 
+            <Route exact path="/movie/:identifier">
+                <Header>
+                    <ShowMovie />
+                </Header>
+            </Route>
+
             <Route exact path="/category/:category">
                 <Header>
                     <MovieCategory />
@@ -37,7 +43,7 @@ const Index = () => {
                 </Header>
             </Route>
 
-            <Route path="/user/edit">
+            <Route exact path="/user/edit">
                 <Header>
                     <UserEdit />
                 </Header>
