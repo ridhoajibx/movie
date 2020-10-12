@@ -31,6 +31,7 @@ export default function MovieCategory() {
     useEffect(() => {
         getMovies()
     }, [category]);
+    console.log(movies);
     return (
         <div>
             <Carousel />
@@ -43,8 +44,8 @@ export default function MovieCategory() {
                                 return (
                                     <Card
                                         key={index}
-                                        movieId={movie.Movieid}
-                                        imageUrl={!movie.Movie.poster ? `https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg` : movie.Movie.poster}
+                                        movieId={movie.Movie.id}
+                                        imageUrl={!movie.Movie.poster ? null : movie.Movie.poster}
                                         title={movie.Movie.title}
                                         text={!movie.Movie.synopsis ? 'none' : movie.Movie.synopsis}
                                         reviews={movie.Movie.Reviews}

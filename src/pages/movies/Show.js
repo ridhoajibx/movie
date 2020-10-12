@@ -67,7 +67,7 @@ const Show = () => {
                                     <Card
                                         key={index}
                                         movieId={movie.id}
-                                        imageUrl={!movie.poster ? `https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg` : movie.poster}
+                                        imageUrl={movie.poster === null ? `https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg` : movie.poster}
                                         title={movie.title}
                                         text={!movie.synopsis ? 'none' : movie.synopsis}
                                         reviews={movie.Reviews}

@@ -6,27 +6,41 @@ import { useEffect } from 'react';
 
 
 const Card = (props) => {
-    // let total = 0;
-    // let rating = props.reviews.length !== 0 ? props.reviews.map((item)=>{return total+=item.rating}) : null
-    // let reviews = props.reviews
+    const [ratings, setRatings] = useState(8);
+    const getRating = () => {
+        let total = 0
+        if (props.reviews) {
+            props.reviews.map((item)=>{
+                total+=item.rating / props.reviews.length
+                setRatings(total)
+            })
+        } else {
+            setRatings(0)
+        }
+    }
+    useEffect(()=>{
+        getRating()
+    }, [])
 
-    const ratings = {
+    const values = {
         size: 20,
-        value: props.rating / 2,
+        value: ratings / 2,
         isHalf: true,
         edit: false
     }
+
+    // console.log(props.reviews);
     return (
         <div className="cardMovie">
-            <div onClick={() => { console.log(props.movieId) }} >
+            <div onClick={()=>console.log(ratings)} >
                 <div className="img1" style={{ backgroundImage: `url(${props.imageUrl})` }}></div>
                 <div className="title">{props.title}</div>
                 <div className="text"> {props.text} </div>
-                {/* <div className="catagory">{props.lang}</div> */}
-                <div className="views">{props.date}</div>
-                {/* <div className="rating d-flex align-items-center">
-                    <span className="mr-2">{props.rating}</span> <ReactStars {...ratings} />
-                </div> */}
+                {/* <div className="views">{props.lang}</div> */}
+                <div className="catagory">{props.date}</div>
+                <div className="rating d-flex align-items-center">
+                <span className="mr-2"> <ReactStars {...values } /> </span>
+                </div>
             </div>
         </div>
     );

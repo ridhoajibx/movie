@@ -18,7 +18,7 @@ const Footer = () => {
                         <Link className="footerBrand d-flex align-items-center" to="/">
                             <img src={Logo} alt="" className="brandImage" />
                             <div className="brandText">
-                                ALL-STAR MOVIE
+                                ALLSTAR MOVIE
                             </div>
                         </Link>
                         <div className="footerText">
