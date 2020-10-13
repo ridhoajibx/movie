@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 const Category = (props) => {
     const [genres, setGenres] = useState([]);
 
     const getGenres = async () => {
         try {
-            // ${process.env.REACT_APP_URL}/category
-            let response = await axios.get(`${process.env.REACT_APP_URL}/category`)
-            setGenres(response.data)
-            // console.log(response.data);
+            let response = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_APIKEY}`)
+            setGenres(response.data.genres)
         } catch (e) {
             console.log(e.message);
         }
@@ -26,13 +23,13 @@ const Category = (props) => {
                         <h4 className="title font-weight-bold text-muted">Browse by category</h4>
                         <ul className="nav nav-pills">
                             <li className="nav-item">
-                                <Link to='/' className={`nav-link tag-category font-weight-bold mb-1 `} >All</Link>
+                                <div className={`nav-link tag-category font-weight-bold mb-1 ${props.category === 'all' ? 'active' : ''}`} onClick={() => props.setCategory('all')} >All</div>
                             </li>
                             {
                                 genres.map((genre, index) => {
                                     return (
                                         <li key={ index } className="nav-item">
-                                            <Link to={`/category/${genre.id}`} className={`nav-link tag-category font-weight-bold mb-1`} >{genre.genre}</Link>
+                                            <div className={`nav-link tag-category font-weight-bold mb-1 ${props.category === genre.id ? 'active' : ''}`} onClick={() => props.setCategory(genre.id)} >{genre.name}</div>
                                         </li>
                                     )
                                 })
