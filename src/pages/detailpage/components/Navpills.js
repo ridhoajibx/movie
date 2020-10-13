@@ -1,9 +1,9 @@
 import React from 'react';
-import Character from './components/character/Character';
-import Overview from './components/Overview';
-import Reviews from './components/review/Review';
+import Character from './character/Character';
+import Overview from './overview/Overview';
+import Review from './review/Review';
 
-const Navpills = () => {
+const Navpills = ({ movie, characters, reviews, pages, totalPages, prevPage, nextPage }) => {
     return (
         <section className="mb-2">
             <div className="container">
@@ -21,10 +21,21 @@ const Navpills = () => {
                             </li>
                         </ul>
                     </div>
-                    <div class="tab-content mb-4" id="pills-tabContent">
-                        <Overview />
-                        <Character />
-                        <Reviews />
+                    <div className="tab-content mb-4" id="pills-tabContent">
+                        <Overview
+                            movie={movie}
+                        />
+                        <Character
+                            characters={characters}
+                        />
+                        <Review
+                            movie={movie}
+                            reviews={reviews}
+                            pages={pages}
+                            totalPages={totalPages}
+                            prevPage={prevPage}
+                            nextPage={nextPage}
+                        />
                     </div>
                 </div>
             </div>

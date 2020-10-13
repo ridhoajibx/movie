@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import axios from 'axios'
 
 import Header from '../components/header/Header';
 import HomePage from '../pages/home/Home';
@@ -13,7 +12,7 @@ import Signup from '../pages/auth/form/Signup';
 import Admin from '../pages/admin/layouts/Admin';
 import Dashboard from '../pages/admin/views/Dashboard';
 import MovieCategory from '../pages/movies/MovieCategory';
-import Swal from 'sweetalert2';
+import ShowMovie from '../pages/detailpage/DetailPage';
 
 const Index = () => {
     

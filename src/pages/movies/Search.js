@@ -13,24 +13,23 @@ const Search = (props) => {
 
     const { searchMovies } = useParams();
     // `${process.env.REACT_APP_URL}/movie/search`
-
-    const getMovie = async() => {
-        setLoading(true)
-        try {
-            let res = await axios.get(`${process.env.REACT_APP_URL}/movie/search/?title=${searchMovies}`)
-            if (res.status === 201) {
-                setMovies(res.data)
-                setLoading(false)
-            } else {
-                throw res
-            }
-        } catch (e) {
-            console.log(e.message);
-            setLoading(true)
-        }
-    }
     
     useEffect(() => {
+        const getMovie = async() => {
+            setLoading(true)
+            try {
+                let res = await axios.get(`${process.env.REACT_APP_URL}/movie/search/?title=${searchMovies}`)
+                if (res.status === 201) {
+                    setMovies(res.data)
+                    setLoading(false)
+                } else {
+                    throw res
+                }
+            } catch (e) {
+                console.log(e.message);
+                setLoading(true)
+            }
+        }
         getMovie()
     }, [searchMovies])
 

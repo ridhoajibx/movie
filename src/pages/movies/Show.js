@@ -9,7 +9,7 @@ const Show = () => {
     const [movies, setMovies] = useState([]),
         [pages, setPages] = useState(1),
         [totalPages, setTotalPages] = useState(1),
-        [limits, setLimits] = useState(10),
+        [limits] = useState(10),
         [loading, setLoading] = useState(false);
 
     const getMovies = async () => {

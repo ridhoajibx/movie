@@ -2,8 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import './User.css'
-import ProfileImg from '../../../assets/profile.jpeg'
-import { Link, Route, Switch, useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Footer from '../../../components/footer/Footer';
 import Hero from './components/Hero';
 import { useState } from 'react';

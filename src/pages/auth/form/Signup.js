@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -17,7 +17,6 @@ const schema = yup.object().shape({
 });
 
 const Signup = () => {
-    const [token, setToken] = useState("")
     let user = useHistory();
     const { register, handleSubmit, errors } = useForm({
         resolver: yupResolver(schema)

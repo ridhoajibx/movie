@@ -16,7 +16,7 @@ const Card = (props) => {
     const getRating = () => {
         let total = 0
         if (props.reviews) {
-            props.reviews.map((item)=>{
+            props.reviews.forEach((item)=> {
                 total+=item.rating / props.reviews.length
                 setRatings(total)
             })
@@ -31,7 +31,7 @@ const Card = (props) => {
     // console.log(props.reviews);
     return (
         <div className="cardMovie">
-            <div onClick={()=>console.log(ratings)} >
+            <Link to={`/movie/${props.movieId}`} >
                 <div className="img1" style={{ backgroundImage: `url(${props.imageUrl})` }}></div>
                 <div className="title">{props.title}</div>
                 <div className="text"> {props.text} </div>
@@ -40,7 +40,7 @@ const Card = (props) => {
                 <div className="rating d-flex align-items-center">
                 <span className="mr-2"> <ReactStars {...values} /> </span>
                 </div>
-            </div>
+            </Link>
         </div>
     );
 }

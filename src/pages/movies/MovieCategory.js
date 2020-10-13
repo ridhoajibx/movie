@@ -15,23 +15,23 @@ export default function MovieCategory() {
 
     const { category } = useParams();
 
-    const getMovies = async () => {
-        setLoading(true)
-        try {
-            let url = `${process.env.REACT_APP_URL}/category/find/${category}`
-            let response = await axios.get(url)
-            setMovies(response.data)
-            // console.log(response.data);
-            setLoading(false)
-        } catch (e) {
-            console.log(e.message);
-            setLoading(true)
-        }
-    }
     useEffect(() => {
+        const getMovies = async () => {
+            setLoading(true)
+            try {
+                let url = `${process.env.REACT_APP_URL}/category/find/${category}`
+                let response = await axios.get(url)
+                setMovies(response.data)
+                // console.log(response.data);
+                setLoading(false)
+            } catch (e) {
+                console.log(e.message);
+                setLoading(true)
+            }
+        }
         getMovies()
     }, [category]);
-    console.log(movies);
+    // console.log(movies);
     return (
         <div>
             <Carousel />
